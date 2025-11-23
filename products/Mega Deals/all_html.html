@@ -40,14 +40,49 @@
 
       <div class="nav-right">
         <a href="/auth/login.html"><span class="fa-solid fa-cart-shopping"></span></a>
-        <a href="/auth/sin_in.html">Sign In</a>
-        <!-- <a href="/auth/profile.html"><i class="fa-solid fa-user"></i></a>  -->
-             <a href="#" id="profileTrigger"><i class="fa-solid fa-user"></i></a>
-
+        <!-- Menu button -->
+      <button id="menuBtn" onclick="openMenu()" class="menu-button">
+        <i class="fa-solid fa-list"></i>
+      </button>
+    </div>
 
       </div>
     </nav>
   </header>
+
+
+<!-- RIGHT SLIDE MENU -->
+<div id="sideMenu">
+  <button id="closeBtn" onclick="closeMenu()">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="auth/sin_in.html">Sign In</a></li>
+    <li><a href="auth/contract.html">Contact</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+</div>
+
+
+<!-- BG Overlay -->
+<div id="overlay" onclick="closeMenu()"></div>
+
+
+<script>
+  function openMenu() {
+    document.getElementById("sideMenu").style.right = "0";
+    document.getElementById("overlay").style.display = "block";
+  }
+
+  function closeMenu() {
+    document.getElementById("sideMenu").style.right = "-250px";
+    document.getElementById("overlay").style.display = "none";
+  }
+</script>
+
 
 
     
