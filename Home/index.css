@@ -83,57 +83,71 @@ nav {
     font-size: 25px;
     cursor: pointer;
 }
-
-/* Search bar main wrapper */
+/* ===== Search bar main wrapper ===== */
 .search-form {
     display: flex;
     align-items: center;
-    width: 220px;
+
+    /* 🔥 Search bar length (লম্বা) */
+    width: 600;         /* পুরো row নেবে */
+    max-width: 1000px;    /* এখানে চাইলে 500 / 600 / 900px দিবে */
+
     border-radius: 30px;
     overflow: hidden;
     background: #f1f1f1;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+    margin: 0 auto;      /* 🔥 Center করে রাখবে */
 }
 
-/* Input box */
+
+/* ===== Input box ===== */
 .search-form input {
     flex: 1;
-    height: 32px;
-    padding: 0 10px;
+    height: 35px;         /* height বাড়াতে এখানেই change করবে */
+    padding: 0 12px;
     border: none;
     outline: none;
-    font-size: 13px;
+    font-size: 14px;      /* Text size */
     color: #333;
     background: transparent;
 }
+
 
 /* Placeholder */
 .search-form input::placeholder {
     color: #aaa;
 }
 
-/* Button */
+
+/* ===== Button (icon container) ===== */
 .search-form button {
-    width: 40px;
-    height: 32px;
-    background-color: #ff6600;
+    width: 45px;         /* Icon area বড় করতে এখানে change */
+    height: 35px;        /* Input height-এর সাথে same রাখো */
+
+    background-color: transparent !important;
     border: none;
-    color: #fff;
+    color: #333;
     cursor: pointer;
-    transition: background 0.3s;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    transition: 0.2s;
 }
 
-/* Button hover */
+
+/* Hover clear */
 .search-form button:hover {
-    background-color: #e65c00;
+    background-color: transparent !important;
 }
 
-/* Icon inside button */
+
+/* ===== Search Icon ===== */
 .search-form i {
-    font-size: 14px;
+    font-size: 16px;     /* Icon বড়/ছোট করতে এখানে change */
+    color: #333;
 }
 
 /* Hero / Promo Banner */
