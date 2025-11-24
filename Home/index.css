@@ -9,7 +9,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
 }
-
 /* Header & Navbar */
 header {
     background-color: #39acc3;
@@ -25,7 +24,8 @@ nav {
     margin: 0 auto;
     height: 90px;
     padding: 0 20px;
-    font-family: "Poppins", Arial, sans-serif; /* FONT FAMILY */
+    font-family: "Montserrat", sans-serif !important; /* Font */
+    font-weight: 500 !important; /* Halka Bold */
 }
 
 /* LEFT NAV */
@@ -52,8 +52,8 @@ nav {
 .nav-left a {
     text-decoration: none;
     color: #333;
-    font-weight: 700; /* BOLD FONT */
-    font-family: "Poppins", Arial, sans-serif; /* FONT FAMILY */
+    font-family: "Montserrat", sans-serif !important; /* Font */
+    font-weight: 500 !important; /* Halka Bold */
     transition: 0.3s;
     line-height: 90px;
 }
@@ -72,8 +72,8 @@ nav {
 .nav-right a {
     text-decoration: none;
     color: #333;
-    font-weight: 700; /* BOLD FONT */
-    font-family: "Poppins", Arial, sans-serif; /* FONT FAMILY */
+    font-family: "Montserrat", sans-serif !important; /* Font */
+    font-weight: 500 !important; /* Halka Bold */
     transition: 0.3s;
     line-height: 90px;
 }
@@ -82,74 +82,75 @@ nav {
     color: #ff4500;
 }
 
+/* Cart icon */
 .cart-icon {
     font-size: 25px;
     cursor: pointer;
 }
+
 /* ===== Search bar main wrapper ===== */
 .search-form {
     display: flex;
     align-items: center;
 
-    /* 🔥 Search bar length (লম্বা) */
-    width: 600;         /* পুরো row নেবে */
-    max-width: 1000px;    /* এখানে চাইলে 500 / 600 / 900px দিবে */
+    width: 600px;
+    max-width: 1000px;
 
     border-radius: 30px;
     overflow: hidden;
     background: #f1f1f1;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 
-    margin: 0 auto;      /* 🔥 Center করে রাখবে */
+    margin: 0 auto;
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 500 !important; /* Halka Bold */
 }
-
 
 /* ===== Input box ===== */
 .search-form input {
     flex: 1;
-    height: 35px;         /* height বাড়াতে এখানেই change করবে */
+    height: 35px;
     padding: 0 12px;
     border: none;
     outline: none;
-    font-size: 14px;      /* Text size */
+    font-size: 14px;
     color: #333;
     background: transparent;
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 500 !important; /* Halka Bold */
 }
-
 
 /* Placeholder */
 .search-form input::placeholder {
     color: #aaa;
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 500 !important; /* Halka Bold */
 }
-
 
 /* ===== Button (icon container) ===== */
 .search-form button {
-    width: 45px;         /* Icon area বড় করতে এখানে change */
-    height: 35px;        /* Input height-এর সাথে same রাখো */
-
+    width: 45px;
+    height: 35px;
     background-color: transparent !important;
     border: none;
     color: #333;
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     transition: 0.2s;
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 500 !important; /* Halka Bold */
 }
-
 
 /* Hover clear */
 .search-form button:hover {
     background-color: transparent !important;
 }
 
-
 /* ===== Search Icon ===== */
 .search-form i {
-    font-size: 16px;     /* Icon বড়/ছোট করতে এখানে change */
+    font-size: 16px;
     color: #333;
 }
 
