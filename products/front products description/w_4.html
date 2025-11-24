@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Page</title>
+  <link rel="stylesheet" href="">
+  <link rel="stylesheet" href="">
+</head>
+
+<body>
+   <div class="profile-overlay" id="profileOverlay"></div>
+  <div class="profile-sidebar" id="profileSidebar">
+   <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<header>
+  <nav>
+    <div class="nav-left">
+      <img src="asstes/icons/download.png" alt="ShoeKarT Logo" class="logo" style="height:100px; width:auto;">
+
+      <ul>
+        <li><a href="products/Mega Deals/all_html.html"> Mega Deals</a></li>
+        <li><a href="products/man/all_html.html">Men</a></li>
+        <li><a href="products/Women/all_together_html.html">Women</a></li>
+        <li><a href="products/kids/all_together_html.html">kids</a></li>
+        <li><a href="products/sports/all_together_html.html">sports</a></li>
+        <li><a href="#">Travel</a></li>
+        <li><a href="products/Accessories/all_together_html.html">Accessories</a></li>
+      </ul>
+    </div>
+<form class="search-form" onsubmit="return false;">
+  <input type="text" placeholder="Search products...">
+  <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+</form>
+
+
+    <div class="nav-right">
+      <a href="auth/login.html"><span class="fa-solid fa-cart-shopping"></span></a>
+
+      <!-- Menu button -->
+      <button id="menuBtn" onclick="openMenu()" class="menu-button">
+        <i class="fa-solid fa-list"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+
+
+<!-- RIGHT SLIDE MENU -->
+<div id="sideMenu">
+  <button id="closeBtn" onclick="closeMenu()">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="auth/sin_in.html">Sign In</a></li>
+    <li><a href="auth/contract.html">Contact</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+</div>
+
+
+<!-- BG Overlay -->
+<div id="overlay" onclick="closeMenu()"></div>
+
+
+<script>
+  function openMenu() {
+    document.getElementById("sideMenu").style.right = "0";
+    document.getElementById("overlay").style.display = "block";
+  }
+
+  function closeMenu() {
+    document.getElementById("sideMenu").style.right = "-250px";
+    document.getElementById("overlay").style.display = "none";
+  }
+</script>
+
+    <div class="container">
+      <!-- Left: Product Images -->
+      <div class="product-images">
+        <img src="" alt="Main Product">
+      </div>
+
+      <!-- Right: Product Details -->
+      <div class="product-details">
+        <div>
+
+
+        
+          <h1>Girls Kids Sandal</h1>
+          <p>Girls Kids Sandal</p>
+          <p class="price">Tk 3,499</p>
+
+          <!-- Sizes -->
+          <div class="sizes">
+            <strong>Sizes:</strong>
+            <span>40</span>
+            <span>41</span>
+            <span class="active">42</span>
+            <span>43</span>
+            <span>44</span>
+          </div>
+
+          <!-- Quantity -->
+          <div class="quantity">
+            <button>-</button>
+            <input type="text" value="1">
+            <button>+</button>
+          </div>
+
+          <!-- Buttons -->
+          <div class="buttons">
+            <button class="buy-now">Buy Now</button>
+            <button class="add-cart">Add To Cart</button>
+          </div>
+
+          <!-- Description -->
+          <div class="description">
+
+
+            <strong>Description:</strong>
+            <p>
+              
+            </p>
+          </div>
+
+          <!-- Ordering Policy -->
+          <div class="policy">
+            <strong>Ordering Policy:</strong>
+            <p>All orders are processed within 24 hours. Payments must be completed to confirm your order. You will
+              receive a confirmation email once your order is successfully placed.</p>
+          </div>
+
+          <!-- Shipping Policy -->
+          <div class="policy">
+            <strong>Shipping Policy:</strong>
+            <p>We offer nationwide shipping. Standard delivery usually takes 3-7 business days. Tracking information
+              will be provided via email once your order is shipped.</p>
+
+          </div>
+          <div class="whatsapp-icon">
+            <i class="fab fa-square-whatsapp"></i>
+            <i class="fab fa-facebook social-icon"></i>
+            <i class="fab fa-facebook-messenger social-icon"></i>
+            <i class="fa-brands fa-x-twitter"></i>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-top">
+        <div>
+          <h3>About Us</h3>
+          <p>Careers</p>
+          <p>Recognition</p>
+          <p>Investors</p>
+          <p>Shoe Category</p>
+        </div>
+        <div>
+          <h3>Terms & Conditions</h3>
+          <p>Payment Options</p>
+          <p>Privacy Policy</p>
+          <p>Franchise Programme</p>
+          <p>Coverage Areas</p>
+        </div>
+        <div>
+          <h3>Brands</h3>
+          <p>Newbalance</p>
+          <p>Trekntread</p>
+          <p>Aarong</p>
+          <p>Walkarfootwear</p>
+          <p>North Star</p>
+        </div>
+        <div>
+          <h3>Help</h3>
+          <p>ShoeKarT</p>
+          <p>ShoeKarT Stores</p>
+          <p>Contact Info</p>
+          <p>Report Issue</p>
+        </div>
+        <div>
+          <h3>Contact</h3>
+          <p>ShoeKarT Company Bangladesh Ltd.</p>
+          <p>Baridara, Dhaka, Bangladesh</p>
+          <p>Call us: 01888313260</p>
+          <p>Email: jhrifat10@.com</p>
+        </div>
+      </div>
+      <hr style="margin:20px 0; border:0.5px solid #333;">
+      <div class="footer-bottom">
+        <p> ShoeKarT Company Bangladesh Ltd.
+
+          <i class="fab fa-square-whatsapp"></i>
+          <i class="fab fa-facebook social-icon"></i>
+          <i class="fab fa-facebook-messenger social-icon"></i>
+          <i class="fa-brands fa-square-instagram"></i>
+          <i class="fa-brands fa-x-twitter"></i>
+          <i class="fa-brands fa-youtube"></i>
+          <i class="fa-brands fa-linkedin"></i>
+          <i class="fa-solid fa-envelope"></i>
+
+        </p>
+
+
+        <div>
+          <img src="https://i.postimg.cc/pT8gbZqM/download-1.png" alt="Bkash">
+          <img src="https://i.postimg.cc/Znx205Gf/download-2.png" alt="Nagad">
+          <img src="https://i.postimg.cc/CxQtRt2V/download.jpg" alt="Rocket">
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- JS -->
+    <script src="script.js"></script>
+    <script>
+      // Quantity +/-
+      const minusBtn = document.querySelector('.quantity button:first-child');
+      const plusBtn = document.querySelector('.quantity button:last-child');
+      const qtyInput = document.querySelector('.quantity input');
+
+      minusBtn.addEventListener('click', () => {
+        let value = parseInt(qtyInput.value);
+        if (value > 1) {
+          qtyInput.value = value - 1;
+        }
+      });
+
+      plusBtn.addEventListener('click', () => {
+        let value = parseInt(qtyInput.value);
+        qtyInput.value = value + 1;
+      });
+
+      // Size selection
+      const sizeButtons = document.querySelectorAll('.sizes span');
+
+      sizeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sizeButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          console.log("Selected size:", btn.innerText);
+        });
+      });
+    </script>
+
+</body>
+
+</html>
