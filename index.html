@@ -2,94 +2,97 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ShoeKarT</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="Home/index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    /* Cart badge styling */
+    .cart-badge{background: red; color: white; border-radius:50%; width:18px; height:18px; display:inline-flex; justify-content:center; align-items:center; font-size:11px; font-weight:700; border:2px solid #fff; position:absolute; top:-8px; right:-8px; z-index:10}
+    .cart-badge.hidden{display:none}
+  </style>
 </head>
 
 <body>
   <div class="profile-overlay" id="profileOverlay"></div>
   <div class="profile-sidebar" id="profileSidebar">
-   <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <header>
+      <nav>
+        <div class="nav-left">
+          <img src="asstes/icons/download.png" alt="ShoeKarT Logo" class="logo" style="height:100px; width:auto;">
+
+          <ul>
+            <li><a href="products/Mega Deals/all_html.html"> MEGA DEALS</a></li>
+            <li><a href="products/man/all_html.html">MEN</a></li>
+            <li><a href="products/Women/all_together_html.html">WOMEN</a></li>
+            <li><a href="products/kids/all_together_html.html">kIDS</a></li>
+            <li><a href="products/sports/all_together_html.html">SPORTS</a></li>
+            <li><a href="#">TRAVELS</a></li>
+            <li><a href="products/Accessories/all_together_html.html">ACCESSORIES</a></li>
+          </ul>
+        </div>
+        <form class="search-form" onsubmit="return false;">
+          <input type="text" placeholder="Search products...">
+          <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+
+        <div class="nav-right" style="display: flex; align-items: center;">
+          
+          <a href="cart/cart.html" style="text-decoration: none; color: inherit; margin-right: 20px;">
+            
+            <div style="position: relative; display: inline-block;">
+                
+                <span class="fa-solid fa-cart-shopping" style="font-size: 24px;"></span>
+                <span id="cart-count-home" class="cart-badge hidden" aria-live="polite" aria-hidden="true">0</span>
+            </div>
+          </a>
+
+          <button id="menuBtn" onclick="openMenu()" class="menu-button">
+            <i class="fa-solid fa-list"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
 
 
-<header>
-  <nav>
-    <div class="nav-left">
-      <img src="asstes/icons/download.png" alt="ShoeKarT Logo" class="logo" style="height:100px; width:auto;">
+    <div id="sideMenu">
+      <button id="closeBtn" onclick="closeMenu()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
 
       <ul>
-        <li><a href="products/Mega Deals/all_html.html"> Mega Deals</a></li>
-        <li><a href="products/man/all_html.html">Men</a></li>
-        <li><a href="products/Women/all_together_html.html">Women</a></li>
-        <li><a href="products/kids/all_together_html.html">kids</a></li>
-        <li><a href="products/sports/all_together_html.html">sports</a></li>
-        <li><a href="#">Travel</a></li>
-        <li><a href="products/Accessories/all_together_html.html">ACCESSORIES</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="auth/sin_in.html">Sign In</a></li>
+        <li><a href="auth/contract.html">Contact</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
       </ul>
     </div>
-<form class="search-form" onsubmit="return false;">
-  <input type="text" placeholder="Search products...">
-  <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-</form>
 
 
-    <div class="nav-right">
-      <a href="auth/login.html"><span class="fa-solid fa-cart-shopping"></span></a>
-
-      <!-- Menu button -->
-      <button id="menuBtn" onclick="openMenu()" class="menu-button">
-        <i class="fa-solid fa-list"></i>
-      </button>
-    </div>
-  </nav>
-</header>
+    <div id="overlay" onclick="closeMenu()"></div>
 
 
-<!-- RIGHT SLIDE MENU -->
-<div id="sideMenu">
-  <button id="closeBtn" onclick="closeMenu()">
-    <i class="fa-solid fa-xmark"></i>
-  </button>
+    <script>
+      function openMenu() {
+        document.getElementById("sideMenu").style.right = "0";
+        document.getElementById("overlay").style.display = "block";
+      }
 
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="auth/sin_in.html">Sign In</a></li>
-    <li><a href="auth/contract.html">Contact</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Blog</a></li>
-  </ul>
-</div>
+      function closeMenu() {
+        document.getElementById("sideMenu").style.right = "-250px";
+        document.getElementById("overlay").style.display = "none";
+      }
+    </script>
 
 
-<!-- BG Overlay -->
-<div id="overlay" onclick="closeMenu()"></div>
+    <section class="promo" style="background: url('asstes/banner/up-2.png') center/cover no-repeat;">
+      <a href="#shop" class="btn">Shop Now</a>
+    </section>
 
-
-<script>
-  function openMenu() {
-    document.getElementById("sideMenu").style.right = "0";
-    document.getElementById("overlay").style.display = "block";
-  }
-
-  function closeMenu() {
-    document.getElementById("sideMenu").style.right = "-250px";
-    document.getElementById("overlay").style.display = "none";
-  }
-</script>
-
-
-    <!-- Hero Banner -->
-<section class="promo" 
-         style="background: url('asstes/banner/up-2.png') center/cover no-repeat;">
-         <a href="#shop" class="btn">Shop Now</a>
-</section>
-
-    <!--category -->
     <section class="shop-sections">
       <div class="card">
         <a href="products/man/all_html.html">
@@ -152,82 +155,91 @@
           <p>Moonbeam and Sea Salt</p><br>
           <span class="new-price">Tk 3499</span>
           <span class="old-price">Tk 3999</span>
-          <button onclick="addToCart('Air Jordan 4 White')">Add to Cart</button></a>
-        
+        </a>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
 
       <div class="category">
         <a href="products/front products description/w_1.html">
-        <img src="https://www.batabd.com/cdn/shop/files/6313196_2_300x.jpg?v=1756803275" alt="Women's Shoes">
+          <img src="https://www.batabd.com/cdn/shop/files/6313196_2_300x.jpg?v=1756803275" alt="Women's Shoes">
         </a>
         <h7>Women's Collection</h7>
         <p>Trendy shoes for women</p><br>
         <span class="new-price">Tk 3499</span>
         <span class="old-price">Tk 3999</span>
-        <button onclick="addToCart('Women\'s Collection')">Add to Cart</button>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
+
       <div class="category">
         <a href="products/front products description/k_2.html">
-        <img src="https://www.batabd.com/cdn/shop/files/0315103_1_1024x1024.jpg?v=1756785469" alt="Kids' Shoes">
+          <img src="https://www.batabd.com/cdn/shop/files/0315103_1_1024x1024.jpg?v=1756785469" alt="Kids' Shoes">
         </a>
         <h7>Kids Collection</h7>
         <p>Comfortable shoes for kids</p><br>
         <span class="new-price">Tk 3499</span>
         <span class="old-price">Tk 3999</span>
-        <button onclick="addToCart('Kids\' Collection')">Add to Cart</button>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
+
       <div class="category">
         <img src="https://retailbd.com/wp-content/uploads/2022/09/R1004-2-400x400.webp" alt="Accessories">
         <h7>Bags</h7>
         <p> Soft leather bag</p><br>
         <span class="new-price">Tk 3499</span>
         <span class="old-price">Tk 3999</span>
-        <button onclick="addToCart('Accessories')">Add to Cart</button>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
+
       <div class="category">
         <img src="https://www.batabd.com/cdn/shop/files/3618950_2_300x.jpg?v=1756786785" alt="Girls Kids Sandal">
         <h7>Girls Kids Sandal</h7>
         <p>Girls Kids Sandal</p><br>
         <span class="new-price">Tk 3499</span>
         <span class="old-price">Tk 3999</span>
-        <button onclick="addToCart('Girls Kids Sandal')">Add to Cart</button>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
+
       <div class="category">
         <img src="products/man/pd_img/p-7.jpg" alt="#">
         <h7>ADIDAS BEASTMODE</h7>
         <p>Rubber outsole</p><br>
         <span class="new-price">Tk 10999</span>
-        <button onclick="addToCart('ADIDAS BEASTMODE')">Add to Cart</button>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
+
       <div class="category">
         <img src="products/man/pd_img/p-8.jpg" alt="Lacoste">
         <h7>ADIDAS ALPHABOOST V2 </h7>
         <p>SPORTS SNEAKER</p><br>
         <span class="new-price">Tk 15999</span>
-        <button onclick="addToCart('ADIDAS ALPHABOOST V2')">Add to Cart</button>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
+
       <div class="category">
         <img src="products/man/pd_img/p-9.jpg" alt="Air Jordan 4 White">
-        <h7>Bata DRIVER  </h7>
+        <h7>Bata DRIVER </h7>
         <p>Rubber Loafer</p><br>
         <span class="new-price">Tk 3499</span>
         <span class="old-price">Tk 3999</span>
-        <button onclick="addToCart('Air Jordan 4 White')">Add to Cart</button>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
+
       <div class="category">
         <img src="products/man/pd_img/p-10.jpg" alt="Air Jordan 4 White">
         <h7>Bata Men's Casual </h7>
         <p>GLOBE Sneaker</p><br>
         <span class="new-price">Tk 3899</span>
-        <button onclick="addToCart('Air Jordan 4 White')">Add to Cart</button>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
+
       <div class="category">
         <img src="products/man/pd_img/p-12.jpg" alt="Men's Shoes">
         <h7>Bata Men's Casual </h7>
         <p>GLOBE Sneaker</p><br><br>
         <span class="new-price">Tk 1899</span>
-        <button onclick="addToCart('Men\'s Collection')">Add to Cart</button>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
+
       <div class="category">
         <a href="products/sports/all_together_html.html">
           <img src="products/man/pd_img/p-14.jpg" alt="Men's Shoes">
@@ -235,41 +247,41 @@
           <p>MENS HP CLOSED LOAFER</p><br><br>
           <span class="new-price">Tk 3499</span>
           <span class="old-price">Tk 3999</span>
-          <button onclick="addToCart('Men\'s Collection')">Add to Cart</button>
         </a>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
+
       <div class="category">
         <img src="products/man/pd_img/pd-15.webp" alt="Men's Shoes">
         <h7>POWER DUOFOAM</h7>
         <p> MENS SPORTS SNEAKER</p><br><br>
         <span class="new-price">Tk 4699</span>
-        <button onclick="addToCart('Men\'s Collection')">Add to Cart</button>
+        <button onclick="addToCart(this)">Add to Cart</button>
       </div>
-
 
     </section>
 
     <p style="text-align:center; font-size:36px;font-family:Comic Sans MS; font-weight:bold;">Special Categories</p>
 
-    <!-- special 4 categorys canva download 675-675px-->
     <section class="shop-sections2">
-
       <div class="card2">
         <a href="products/Women/all_together_html.html">
-        <img src="asstes/special_4_catagiry/sp-3.png" alt="Men Collection">
-        <div class="card-overlay">
-          <h3>MEN’S COLLECTION</h3>
-          <p>Exclusive shoes for men</p>
-        </div></a>
+          <img src="asstes/special_4_catagiry/sp-3.png" alt="Men Collection">
+          <div class="card-overlay">
+            <h3>MEN’S COLLECTION</h3>
+            <p>Exclusive shoes for men</p>
+          </div>
+        </a>
       </div>
 
       <div class="card2">
         <a href="products/Mega Deals/all_html.html">
-        <img src="asstes/special_4_catagiry/sp-4.png" alt="Women Collection">
-        <div class="card-overlay">
-          <h3>WOMEN’S COLLECTION</h3>
-          <p>Trendy fashion for women</p>
-        </div></a>
+          <img src="asstes/special_4_catagiry/sp-4.png" alt="Women Collection">
+          <div class="card-overlay">
+            <h3>WOMEN’S COLLECTION</h3>
+            <p>Trendy fashion for women</p>
+          </div>
+        </a>
       </div>
 
       <div class="card2">
@@ -284,18 +296,19 @@
 
       <div class="card2">
         <a href="products/kids/all_together_html.html">
-        <img src="asstes/special_4_catagiry/sp-1.png" alt="Accessories">
-        <div class="card-overlay">
-          <h3>ACCESSORIES</h3>
-          <p>Backpacks & wallets</p>
-        </div></a>
+          <img src="asstes/special_4_catagiry/sp-1.png" alt="Accessories">
+          <div class="card-overlay">
+            <h3>ACCESSORIES</h3>
+            <p>Backpacks & wallets</p>
+          </div>
+        </a>
       </div>
     </section>
-    <!-- Hero Banner 2 -->
-<section class="promo-2" 
-         style="background: url('asstes/banner/up-4.png') center/cover no-repeat;">
-         <a href="#shop" class="btn">Shop Now</a>
-</section>
+
+    <section class="promo-2" style="background: url('asstes/banner/up-4.png') center/cover no-repeat;">
+      <a href="#shop" class="btn">Shop Now</a>
+    </section>
+
     <footer>
       <div class="footer-top">
         <div>
@@ -350,22 +363,67 @@
         <div>
           <img src="https://i.postimg.cc/pT8gbZqM/download-1.png" alt="Bkash">
           <img src="https://i.postimg.cc/Znx205Gf/download-2.png" alt="Nagad">
-.
         </div>
       </div>
     </footer>
 
+    <script src="script.js"></script>
     <script>
-      const cart = [];
-      function addToCart(item) {
-        cart.push(item);
-        alert(item + " added to cart!");
-        console.log("Cart:", cart);
+      document.addEventListener("DOMContentLoaded", () => {
+        updateHomeCartCount();
+      });
+// Add to Cart function (robust; does not rely on global `event`)
+      function addToCart(element) {
+        let product = {};
+
+        if (element && typeof element === 'object') {
+          const card = element.closest('.category') || element.closest('.card') || element.closest('.card2') || element.closest('a');
+          if (card) {
+            const nameTag = card.querySelector('h7') || card.querySelector('h3') || card.querySelector('.p-name') || card.querySelector('h1') || card.querySelector('h2');
+            product.name = nameTag ? nameTag.innerText.trim() : 'Product';
+
+            const priceTag = card.querySelector('.new-price') || card.querySelector('.p-price');
+            const priceText = priceTag ? priceTag.innerText : '0';
+            product.price = parseInt(priceText.replace(/[^0-9]/g, '')) || 0;
+
+            const imgTag = card.querySelector('img');
+            product.img = imgTag ? imgTag.src : 'asstes/icons/download.png';
+          }
+        } else {
+          alert('Error: Button not set up correctly.');
+          return;
+        }
+
+        product.quantity = 1;
+
+        const cart = JSON.parse(localStorage.getItem('shoeKartCart')) || [];
+        const existing = cart.find(item => item.name === product.name);
+
+        if (existing) {
+          existing.quantity = (existing.quantity || 0) + 1;
+        } else {
+          cart.push(product);
+        }
+
+        localStorage.setItem('shoeKartCart', JSON.stringify(cart));
+        updateHomeCartCount();
       }
 
-      console.log("Welcome to ShoeKarT!");
+      function updateHomeCartCount() {
+        const cart = JSON.parse(localStorage.getItem('shoeKartCart')) || [];
+        const total = cart.reduce((acc, item) => acc + (item.quantity || 0), 0);
+        const badge = document.getElementById('cart-count-home');
+        if (!badge) return;
+        badge.textContent = total;
+        if (total > 0) {
+          badge.classList.remove('hidden');
+          badge.setAttribute('aria-hidden', 'false');
+        } else {
+          badge.classList.add('hidden');
+          badge.setAttribute('aria-hidden', 'true');
+        }
+      }
     </script>
-    <script src="script.js"></script>
 </body>
 
 </html>

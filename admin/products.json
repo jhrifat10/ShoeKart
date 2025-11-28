@@ -1,0 +1,5 @@
+[
+  {"id":"p1","title":"Classic Leather Sneaker","category":"Men","price":59.99,"stock":12,"image":"../asstes/images/sample1.jpg"},
+  {"id":"p2","title":"Running Speed X","category":"Sports","price":79.5,"stock":8,"image":"../asstes/images/sample2.jpg"},
+  {"id":"p3","title":"Comfort Sandal","category":"Women","price":29.99,"stock":20,"image":"../asstes/images/sample3.jpg"}
+]
