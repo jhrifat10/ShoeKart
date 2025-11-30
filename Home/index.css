@@ -24,6 +24,7 @@ nav {
     margin: 0 auto;
     height: 90px;
     padding: 0 20px;
+    text-transform: uppercase;
     font-family: "Montserrat", sans-serif !important; /* Font */
     font-weight: 500 !important; /* Halka Bold */
 }
