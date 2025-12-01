@@ -12,42 +12,72 @@
 <body>
   <div class="profile-overlay" id="profileOverlay"></div>
   <div class="profile-sidebar" id="profileSidebar">
-    <header>
-      <nav>
-        <div class="nav-left">
-          <img src="/asstes/icons/download.png" alt="ShoeKarT Logo" class="logo" style="height:100px; width:auto;">
+   <!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-          <ul>
-            <li><a href="#"> Mega Deals</a></li>
-            <li><a href="/products/man/">Men</a></li>
-            <li><a href="#">Women</a></li>
-            <li><a href="/products/man.html">kids</a></li>
-            <li><a href="#">sports</a></li>
-            <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Accessories</a></li>
+<header>
+  <nav>
+    <div class="nav-left">
+      <img src="../../../asstes/icons/download.png" alt="ShoeKarT Logo" class="logo" style="height:100px; width:auto;">
 
-          </ul>
-        </div>
-        <!-- Search Form -->
-        <form class="search-form" onsubmit="return false;">
-          <input type="text" placeholder="Search products...">
-          <button type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-        </form>
+      <ul>
+        <li><a href="products/Mega Deals/all_html.html"> Mega Deals</a></li>
+        <li><a href="products/man/all_html.html">Men</a></li>
+        <li><a href="products/Women/all_together_html.html">Women</a></li>
+        <li><a href="products/kids/all_together_html.html">kids</a></li>
+        <li><a href="products/sports/all_together_html.html">sports</a></li>
+        <li><a href="#">Travel</a></li>
+        <li><a href="products/Accessories/all_together_html.html">Accessories</a></li>
+      </ul>
+    </div>
+<form class="search-form" onsubmit="return false;">
+  <input type="text" placeholder="Search products...">
+  <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+</form>
+
+    <div class="nav-right">
+      <a href="auth/login.html"><span class="fa-solid fa-cart-shopping"></span></a>
+
+      <!-- Menu button -->
+      <button id="menuBtn" onclick="openMenu()" class="menu-button">
+        <i class="fa-solid fa-list"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 
 
-        <!-- Font Awesome CDN (add inside <head>) -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<!-- RIGHT SLIDE MENU -->
+<div id="sideMenu">
+  <button id="closeBtn" onclick="closeMenu()">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
 
-        <div class="nav-right">
-          <a href="/auth/login.html"><span class="fa-solid fa-cart-shopping"></span></a>
-          <a href="/auth/sin_in.html">Sign In</a>
-          <a href="#" id="profileTrigger"><i class="fa-solid fa-user"></i></a>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="auth/sin_in.html">Sign In</a></li>
+    <li><a href="auth/contract.html">Contact</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Blog</a></li>
+  </ul>
+</div>
 
-        </div>
-      </nav>
-    </header>
+
+<!-- BG Overlay -->
+<div id="overlay" onclick="closeMenu()"></div>
+
+
+<script>
+  function openMenu() {
+    document.getElementById("sideMenu").style.right = "0";
+    document.getElementById("overlay").style.display = "block";
+  }
+
+  function closeMenu() {
+    document.getElementById("sideMenu").style.right = "-250px";
+    document.getElementById("overlay").style.display = "none";
+  }
+</script>
 
     <div class="container">
       <!-- Left: Product Images -->

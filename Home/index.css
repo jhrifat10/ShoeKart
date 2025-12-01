@@ -88,7 +88,26 @@ nav {
     font-size: 25px;
     cursor: pointer;
 }
-
+ /* Cart badge styling */
+    .cart-badge{
+      background: red; color: white; 
+      border-radius:50%; 
+      width:18px; 
+      height:18px; 
+      display:inline-flex; 
+      justify-content:center; 
+      align-items:center; 
+      font-size:11px; 
+      font-weight:700; 
+      border:2px solid #fff; 
+      position:absolute; 
+      top:10px; 
+      right:-8px; 
+      z-index:10
+    }
+    .cart-badge.hidden{
+      display:none
+    }
 /* ===== Search bar main wrapper ===== */
 .search-form {
     display: flex;
