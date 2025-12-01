@@ -585,6 +585,26 @@ a i {
     font-size: 13px;
   }
 }
+.shop-button {
+    padding: 12px 25px;
+    background-color: #39acc3;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    transition: background-color 0.9s ease;
+}
+
+.shop-button:hover {
+    background-color:black;
+}
 
 
 /* RIGHT SLIDE MENU */
