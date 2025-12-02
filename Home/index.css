@@ -687,3 +687,13 @@ a i {
   cursor: pointer;
 }
 
+.custom-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+.custom-list li {
+    margin-bottom: 2px;
+    background-color: #39acc3;
+    border-radius: 5px;
+}
