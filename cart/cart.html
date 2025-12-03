@@ -33,6 +33,7 @@
         .grand-total { font-size: 22px; font-weight: bold; color: #333; margin-bottom: 15px; display: block; }
         .btn-checkout { background: #28a745; color: white; text-decoration: none; padding: 12px 25px; border-radius: 5px; font-size: 18px; font-weight: 500; transition: 0.3s; }
         .btn-checkout:hover { background: #218838; }
+
         .empty-msg { text-align: center; font-size: 18px; color: #777; padding: 40px; }
     </style>
 </head>
@@ -132,12 +133,10 @@
         }
 
         function removeItem(index) {
-            if (confirm()) {
-                let cart = JSON.parse(localStorage.getItem('shoeKartCart')) || [];
-                cart.splice(index, 1);
-                localStorage.setItem('shoeKartCart', JSON.stringify(cart));
-                location.reload();
-            }
+            let cart = JSON.parse(localStorage.getItem('shoeKartCart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('shoeKartCart', JSON.stringify(cart));
+            location.reload();
         }
 
         function updateGlobalCount() {
