@@ -8,32 +8,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        /* --- CSS for Cart Page --- */
         body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; }
-        
-        /* Navbar Style (Simplified) */
+
         header { background: #fff; padding: 10px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
         .logo { height: 60px; }
         .nav-link { text-decoration: none; color: #333; font-weight: 600; font-size: 16px; margin-right: 20px; }
 
-        /* Cart Container */
         .cart-container { max-width: 1000px; margin: 50px auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
         h2 { text-align: center; margin-bottom: 30px; color: #333; }
 
-        /* Table Styles */
         table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
         th { background: #333; color: white; padding: 12px; text-align: center; }
         td { padding: 15px; border-bottom: 1px solid #ddd; text-align: center; vertical-align: middle; }
-        
+
         .p-img { width: 60px; height: 60px; object-fit: cover; border-radius: 5px; }
         .p-name { font-weight: 600; color: #444; }
 
-        /* Buttons */
         .btn-qty { padding: 5px 10px; background: #eee; border: 1px solid #ddd; cursor: pointer; font-weight: bold; }
         .btn-qty:hover { background: #ccc; }
         .btn-remove { background: #ff4d4d; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; }
         .btn-remove:hover { background: #cc0000; }
-        
+
         .checkout-section { text-align: right; margin-top: 20px; }
         .grand-total { font-size: 22px; font-weight: bold; color: #333; margin-bottom: 15px; display: block; }
         .btn-checkout { background: #28a745; color: white; text-decoration: none; padding: 12px 25px; border-radius: 5px; font-size: 18px; font-weight: 500; transition: 0.3s; }
@@ -71,8 +66,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody id="cart-body">
-                </tbody>
+            <tbody id="cart-body"></tbody>
         </table>
 
         <div class="checkout-section" id="checkout-section">
@@ -82,7 +76,6 @@
     </div>
 
     <script>
-        // পেজ লোড হলে কার্ট দেখাও
         document.addEventListener('DOMContentLoaded', () => {
             loadCartItems();
             updateGlobalCount();
@@ -93,14 +86,15 @@
             let tableBody = document.getElementById('cart-body');
             let checkoutSection = document.getElementById('checkout-section');
             let cartTable = document.getElementById('cart-table');
-            
-            tableBody.innerHTML = ''; // টেবিল ক্লিয়ার করা
+
+            tableBody.innerHTML = '';
             let grandTotal = 0;
 
             if (cart.length === 0) {
                 cartTable.style.display = 'none';
                 checkoutSection.style.display = 'none';
-                document.querySelector('.cart-container').innerHTML += '<div class="empty-msg">Your cart is currently empty! <br><br> <a href="index.html" class="nav-link" style="color:blue;">Go Shopping</a></div>';
+                document.querySelector('.cart-container').innerHTML += 
+                    '<div class="empty-msg">Your cart is currently empty! <br><br> <a href="index.html" class="nav-link" style="color:#39acc3;">Go Shopping</a></div>';
                 return;
             }
 
@@ -120,8 +114,7 @@
                         </td>
                         <td>Tk ${total}</td>
                         <td><button class="btn-remove" onclick="removeItem(${index})"><i class="fa-solid fa-trash"></i></button></td>
-                    </tr>
-                `;
+                    </tr>`;
                 tableBody.innerHTML += row;
             });
 
@@ -133,18 +126,17 @@
             if (cart[index].quantity + change > 0) {
                 cart[index].quantity += change;
                 localStorage.setItem('shoeKartCart', JSON.stringify(cart));
-                loadCartItems(); // রিলোড টেবিল
-                updateGlobalCount(); // রিলোড কাউন্ট
+                loadCartItems();
+                updateGlobalCount();
             }
         }
 
         function removeItem(index) {
-            if(confirm("Are you sure you want to remove this item?")) {
+            if (confirm()) {
                 let cart = JSON.parse(localStorage.getItem('shoeKartCart')) || [];
                 cart.splice(index, 1);
                 localStorage.setItem('shoeKartCart', JSON.stringify(cart));
-                // পেজ রিফ্রেশ করে আপডেট দেখানো
-                location.reload(); 
+                location.reload();
             }
         }
 
