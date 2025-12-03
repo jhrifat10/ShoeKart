@@ -42,12 +42,14 @@
     <header>
         <div class="nav-left">
             <a href="index.html">
-                <img src="../asstes/icons/download.png" alt="ShoeKarT" class="logo">
+                <!-- লোগো ইমেজ না থাকলে অল্টারনেটিভ টেক্সট দেখাবে -->
+                <img src="../asstes/icons/download.png" alt="ShoeKarT" class="logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<h2>ShoeKarT</h2>'">
             </a>
         </div>
         <div class="nav-right">
             <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="cart.html" class="nav-link" style="color: #ff6b6b;">
+            <!-- এখানে color পরিবর্তন করে black করা হয়েছে -->
+            <a href="cart.html" class="nav-link" style="color: black;">
                 <i class="fa-solid fa-cart-shopping"></i> Cart (<span id="cart-count">0</span>)
             </a>
         </div>
@@ -84,6 +86,13 @@
 
         function loadCartItems() {
             let cart = JSON.parse(localStorage.getItem('shoeKartCart')) || [];
+            
+            // ডেমো হিসেবে কিছু ডাটা যোগ করা হচ্ছে যদি কার্ট খালি থাকে (টেস্ট করার সুবিধার্থে)
+            if(cart.length === 0) {
+                 // আপনি চাইলে নিচের লাইনটি মুছে দিতে পারেন যদি শুধু রিয়েল ডাটা চান
+                 // cart = [{name: "Nike Air Max", price: 5000, quantity: 1, img: "https://via.placeholder.com/60"}];
+            }
+
             let tableBody = document.getElementById('cart-body');
             let checkoutSection = document.getElementById('checkout-section');
             let cartTable = document.getElementById('cart-table');
@@ -103,9 +112,12 @@
                 let total = item.price * item.quantity;
                 grandTotal += total;
 
+                // ইমেজের এরর হ্যান্ডলিং যোগ করা হয়েছে
+                let imgSrc = item.img ? item.img : 'https://via.placeholder.com/60?text=Shoe';
+
                 let row = `
                     <tr>
-                        <td><img src="${item.img}" class="p-img" alt="shoe"></td>
+                        <td><img src="${imgSrc}" class="p-img" alt="shoe" onerror="this.src='https://via.placeholder.com/60?text=No+Img'"></td>
                         <td class="p-name">${item.name}</td>
                         <td>Tk ${item.price}</td>
                         <td>
@@ -136,7 +148,7 @@
             let cart = JSON.parse(localStorage.getItem('shoeKartCart')) || [];
             cart.splice(index, 1);
             localStorage.setItem('shoeKartCart', JSON.stringify(cart));
-            location.reload();
+            location.reload(); // পেজ রিফ্রেশ করে আইটেম রিমুভ ইফেক্ট দেখাবে
         }
 
         function updateGlobalCount() {
