@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeKarT - Checkout</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Linked Index CSS for Footer and Global Styles -->
+    <link rel="stylesheet" href="../../Home/index.css">
+    
+    <style>
+        /* CSS Variables & Reset */
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --bg-body: #f9fafb;
+            --bg-white: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border-color: #e5e7eb;
+            --radius-lg: 1rem;
+            --radius-md: 0.75rem;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        /* --- SIDE MENU STYLES --- */
+        #sideMenu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 250px;
+            height: 100%;
+            background: #fff;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+            transition: right 0.3s ease;
+            z-index: 1001;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #closeBtn {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .custom-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .custom-list li {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .custom-list li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 16px;
+            display: block;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+        }
+
+        /* --- CHECKOUT SPECIFIC STYLES --- */
+        main {
+            padding: 2rem 1rem;
+            max-width: 1280px;
+            margin: 0 auto;
+            min-height: 60vh;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .grid-layout {
+                grid-template-columns: 7fr 5fr;
+                gap: 3rem;
+            }
+        }
+
+        .btn-back {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+            margin-bottom: 2rem;
+        }
+        .btn-back:hover { color: var(--text-main); }
+        .btn-back i { margin-right: 0.5rem; }
+
+        /* Renamed from .card to .checkout-card to avoid conflict with index.css */
+        .checkout-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            overflow: visible; /* Ensure content isn't cut off */
+            height: auto; /* Allow height to grow with content */
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background-color: rgba(249, 250, 251, 0.5);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        /* Changed icon color to black as requested */
+        .card-title i { color: #000; }
+
+        .card-body { padding: 1.5rem; }
+
+        .form-group { margin-bottom: 1rem; }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.25rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px #e0e7ff;
+        }
+
+        .input-wrapper { position: relative; }
+        .input-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        input.has-icon { padding-left: 35px; }
+
+        .btn-primary {
+            width: 100%;
+            background-color: #000000; /* Changed to Black */
+            color: white;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-primary:hover { background-color: #333333; } /* Slightly lighter black on hover */
+
+        /* Cart Items in Checkout */
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .item-img-box {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .item-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .qty-badge {
+            position: absolute; bottom: 0; right: 0;
+            background: #111827; color: white;
+            font-size: 0.75rem; padding: 2px 6px;
+            border-top-left-radius: 8px;
+        }
+        .summary-row {
+            display: flex; justify-content: space-between;
+            font-size: 0.875rem; color: #4b5563;
+            margin-bottom: 0.75rem;
+        }
+        .total-row {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem; margin-top: 1rem;
+            display: flex; justify-content: space-between;
+            align-items: center; font-weight: bold;
+        }
+        
+        /* Shipping Options */
+        .shipping-option {
+            display: flex; align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            cursor: pointer; margin-bottom: 0.75rem;
+        }
+        .shipping-option.selected {
+            border-color: var(--primary);
+            background-color: #eef2ff;
+        }
+
+        /* --- FOOTER STYLES REMOVED: Managed by ../Home/index.css --- */
+        
+        /* Error messages */
+        .error-msg { color: #ef4444; font-size: 12px; margin-top: 4px; }
+        
+        /* Success Card - Smaller Size */
+        .success-card { 
+            text-align: center; 
+            max-width: 380px; /* Reduced width */
+            margin: 80px auto; 
+            padding: 30px 20px; 
+            background: white; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Removed as per request -->
+
+    <!-- Side Menu (Added from your Home Page) -->
+    <div id="sideMenu">
+        <button id="closeBtn" onclick="closeMenu()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <ul class="custom-list">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Sign In</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Blog</a></li>
+        </ul>
+    </div>
+    <div id="overlay" onclick="closeMenu()"></div>
+
+    <!-- Main Checkout Content -->
+    <div id="checkout-view">
+        <main>
+            <button class="btn-back" onclick="window.history.back()">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Cart
+            </button>
+
+            <div class="grid-layout">
+                <!-- Left Column: Forms -->
+                <div class="forms-column">
+                    
+                    <!-- Contact Section -->
+                    <div class="checkout-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fa-solid fa-user"></i> Contact Information
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-envelope input-icon"></i>
+                                    <input type="email" id="email" class="has-icon" placeholder="you@example.com">
+                                </div>
+                                <div class="error-msg" id="error-email"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-solid fa-phone input-icon"></i>
+                                    <input type="tel" id="phone" class="has-icon" placeholder="+880 1712-345678">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address Section -->
+                    <div class="checkout-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fa-solid fa-truck"></i> Shipping Address
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Country</label>
+                                    <select id="country">
+                                        <option>Bangladesh</option>
+                                        <option>United States</option>
+                                        <option>United Kingdom</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>City</label>
+                                    <select id="city">
+                                        <option value="">Select City</option>
+                                        <option value="Dhaka">Dhaka</option>
+                                        <option value="Chattogram">Chattogram</option>
+                                        <option value="Sylhet">Sylhet</option>
+                                        <option value="Khulna">Khulna</option>
+                                        <option value="Rajshahi">Rajshahi</option>
+                                        <option value="Barishal">Barishal</option>
+                                        <option value="Rangpur">Rangpur</option>
+                                        <option value="Mymensingh">Mymensingh</option>
+                                        <option value="Comilla">Comilla</option>
+                                    </select>
+                                    <div class="error-msg" id="error-city"></div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Area</label>
+                                    <select id="area">
+                                        <option value="">Select Area</option>
+                                        <option value="Dhanmondi">Dhanmondi</option>
+                                        <option value="Gulshan">Gulshan</option>
+                                        <option value="Banani">Banani</option>
+                                        <option value="Uttara">Uttara</option>
+                                        <option value="Mirpur">Mirpur</option>
+                                        <option value="Mohammadpur">Mohammadpur</option>
+                                        <option value="Bashundhara">Bashundhara</option>
+                                        <option value="Farmgate">Farmgate</option>
+                                        <option value="Motijheel">Motijheel</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <div class="error-msg" id="error-area"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-location-dot input-icon"></i>
+                                        <input type="text" id="address" class="has-icon" placeholder="House/Road No">
+                                    </div>
+                                    <div class="error-msg" id="error-address"></div>
+                                </div>
+                            </div>
+                            <!-- Moved ZIP to its own row or adjust layout if needed, previously it was with Area -->
+                            <div class="form-group" style="width: 50%;">
+                                <label>ZIP / Postal Code</label>
+                                <input type="text" id="zip">
+                                <div class="error-msg" id="error-zip"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Method Section -->
+                    <div class="checkout-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fa-solid fa-truck-fast"></i> Delivery Method
+                            </h2>
+                        </div>
+                        <div class="card-body" id="shipping-options-container">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Payment Section -->
+                    <div class="checkout-card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fa-regular fa-credit-card"></i> Payment Details
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Card Number</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-credit-card input-icon"></i>
+                                    <input type="text" id="cardNumber" class="has-icon" placeholder="0000 0000 0000 0000" maxlength="19">
+                                </div>
+                                <div class="error-msg" id="error-cardNumber"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Name on Card</label>
+                                <input type="text" id="cardName" placeholder="John Doe">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Expiration</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-regular fa-calendar input-icon"></i>
+                                        <input type="text" id="cardExpiry" class="has-icon" placeholder="MM/YY" maxlength="5">
+                                    </div>
+                                    <div class="error-msg" id="error-cardExpiry"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>CVC</label>
+                                    <div class="input-wrapper">
+                                        <i class="fa-solid fa-lock input-icon"></i>
+                                        <input type="text" id="cardCvc" class="has-icon" placeholder="123" maxlength="4">
+                                    </div>
+                                    <div class="error-msg" id="error-cardCvc"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Summary -->
+                <div class="summary-column">
+                    <div class="checkout-card" style="position: sticky; top: 100px;">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fa-solid fa-bag-shopping"></i> Order Summary
+                            </h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="cart-items" id="cart-items-container">
+                                <!-- Injected via JS -->
+                            </div>
+
+                            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                                <div class="summary-row">
+                                    <span>Subtotal</span>
+                                    <span id="summary-subtotal">TK 0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Shipping</span>
+                                    <span id="summary-shipping">Free</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Taxes (8%)</span>
+                                    <span id="summary-tax">TK 0.00</span>
+                                </div>
+                                <div class="total-row">
+                                    <span style="font-weight: 700; font-size: 1.1rem;">Total</span>
+                                    <div class="text-right">
+                                        <div style="font-size: 1.5rem; font-weight: 700; color: #000;" id="summary-total">TK 0.00</div>
+                                        <div class="text-xs text-muted">BDT</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <button id="pay-btn" class="btn-primary">
+                                    Pay <span id="btn-total"></span>
+                                </button>
+                                <p class="text-center text-xs text-muted mt-4 flex justify-center items-center gap-2">
+                                    <i class="fa-solid fa-lock"></i>
+                                    Payments are secure and encrypted
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success View -->
+    <div id="success-view" class="hidden">
+        <div class="success-card">
+            <div style="width: 70px; height: 70px; background: #dcfce7; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
+                <i class="fa-solid fa-check" style="font-size: 30px; color: #16a34a;"></i>
+            </div>
+            <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Order Confirmed!</h2>
+            <p class="text-muted" style="margin-bottom: 2rem; font-size: 0.9rem;">
+                Thank you for your purchase. We've sent a confirmation email to <span id="success-email" style="font-weight: 600; color: #111827;"></span>.
+            </p>
+            <button onclick="window.location.href='/'" class="btn-primary">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer Section (Added from your Home Page) -->
+    <footer>
+        <div class="footer-top">
+            <div>
+                <h3>About Us</h3>
+                <p>Careers</p>
+                <p>Recognition</p>
+                <p>Investors</p>
+                <p>Shoe Category</p>
+            </div>
+            <div>
+                <h3>Terms & Conditions</h3>
+                <p>Payment Options</p>
+                <p>Privacy Policy</p>
+                <p>Franchise Programme</p>
+                <p>Coverage Areas</p>
+            </div>
+            <div>
+                <h3>Brands</h3>
+                <p>Newbalance</p>
+                <p>Trekntread</p>
+                <p>Aarong</p>
+                <p>Walkarfootwear</p>
+                <p>North Star</p>
+            </div>
+            <div>
+                <h3>Help</h3>
+                <p>ShoeKarT</p>
+                <p>ShoeKarT Stores</p>
+                <p>Contact Info</p>
+                <p>Report Issue</p>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <p>ShoekarT Company Bangladesh Ltd.</p>
+                <p>North Badda, Dhaka, Bangladesh</p>
+                <p>Call us: 01888313260</p>
+                <p>Email: jhrifat10@.com</p>
+            </div>
+        </div>
+        <hr style="margin:20px 0; border:0.5px solid #333;">
+        <div class="footer-bottom">
+            <p> ShoekarT Company Bangladesh Ltd.
+                <i class="fab fa-square-whatsapp"></i>
+                <i class="fab fa-facebook"></i>
+                <i class="fab fa-facebook-messenger"></i>
+                <i class="fa-brands fa-square-instagram"></i>
+                <i class="fa-brands fa-x-twitter"></i>
+                <i class="fa-brands fa-youtube"></i>
+                <i class="fa-brands fa-linkedin"></i>
+                <i class="fa-solid fa-envelope"></i>
+            </p>
+            <div>
+                <img src="https://i.postimg.cc/pT8gbZqM/download-1.png" alt="Bkash" style="height: 30px; margin-left: 10px; background: #fff; padding: 2px; border-radius: 4px;">
+                <img src="https://i.postimg.cc/Znx205Gf/download-2.png" alt="Nagad" style="height: 30px; margin-left: 10px; background: #fff; padding: 2px; border-radius: 4px;">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. MENU & HEADER LOGIC ---
+        function openMenu() {
+            document.getElementById("sideMenu").style.right = "0";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function closeMenu() {
+            document.getElementById("sideMenu").style.right = "-300px";
+            document.getElementById("overlay").style.display = "none";
+        }
+        
+        // This function syncs the header cart count
+        function updateHomeCartCount() {
+            // Try to get data from localStorage (like your home page does)
+            const cartData = JSON.parse(localStorage.getItem('shoeKartCart')) || [];
+            const total = cartData.reduce((acc, item) => acc + (item.quantity || 0), 0);
+            
+            const badge = document.getElementById('cart-count-home');
+            if (!badge) return;
+            
+            badge.textContent = total;
+            if (total > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        // --- 2. CHECKOUT LOGIC ---
+
+        // Default Dummy Data (fallback if localStorage is empty for demo)
+        const dummyCart = [
+            {
+                id: 1,
+                name: "Premium Noise-Cancelling Headphones",
+                desc: "Matte Black / Wireless",
+                price: 2999.00,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop&q=60",
+                quantity: 1
+            },
+            {
+                id: 2,
+                name: "Ergonomic Mechanical Keyboard",
+                desc: "Blue Switches",
+                price: 1490.50,
+                image: "https://images.unsplash.com/photo-1587829741301-dc798b91a603?w=500&auto=format&fit=crop&q=60",
+                quantity: 1
+            }
+        ];
+
+        // Try to load cart from localStorage, if empty use dummyCart for preview purposes
+        let cart = [];
+        const localCart = JSON.parse(localStorage.getItem('shoeKartCart'));
+        
+        if (localCart && localCart.length > 0) {
+            cart = localCart;
+        } else {
+            cart = dummyCart;
+        }
+
+        const shippingMethods = [
+            { id: 'standard', name: 'Standard Shipping', time: '5-7 business days', price: 60.00 },
+            { id: 'express', name: 'Express Shipping', time: '2-3 business days', price: 120.00 },
+        ];
+
+        let state = {
+            shippingMethodId: 'standard',
+            formData: {
+                email: '', firstName: '', lastName: '', address: '', city: '', area: '', zip: '', cardNumber: '', cardCvc: '', cardExpiry: ''
+            }
+        };
+
+        function renderCart() {
+            const container = document.getElementById('cart-items-container');
+            // Check if cart is empty
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="text-center text-muted">Your cart is empty.</p>';
+                updateTotals();
+                return;
+            }
+
+            container.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="item-img-box">
+                        <img src="${item.img || item.image}" alt="${item.name}">
+                        <div class="qty-badge">x${item.quantity}</div>
+                    </div>
+                    <div class="item-details" style="flex: 1;">
+                        <div class="flex justify-between">
+                            <h3 style="font-size: 14px; margin-bottom: 4px;">${item.name}</h3>
+                            <span style="font-weight: 600;">TK ${(item.price * item.quantity).toFixed(2)}</span>
+                        </div>
+                        <p class="text-sm text-muted">${item.desc || 'ShoeKarT Product'}</p>
+                    </div>
+                </div>
+            `).join('');
+            updateTotals();
+            updateHomeCartCount(); // Sync Header Badge
+        }
+
+        function renderShippingMethods() {
+            const container = document.getElementById('shipping-options-container');
+            container.innerHTML = shippingMethods.map(method => `
+                <div class="shipping-option ${state.shippingMethodId === method.id ? 'selected' : ''}" 
+                     onclick="setShippingMethod('${method.id}')">
+                    <div style="width: 16px; height: 16px; border: 1px solid #ccc; border-radius: 50%; margin-right: 10px; display: flex; align-items: center; justify-content: center;">
+                        ${state.shippingMethodId === method.id ? '<div style="width: 8px; height: 8px; background: #4f46e5; border-radius: 50%;"></div>' : ''}
+                    </div>
+                    <div style="flex: 1;">
+                        <span style="display: block; font-weight: 600; font-size: 0.9rem;">${method.name}</span>
+                        <span style="display: block; font-size: 0.8rem; color: #6b7280;">${method.time}</span>
+                    </div>
+                    <span style="font-weight: 600;">TK ${method.price.toFixed(2)}</span>
+                </div>
+            `).join('');
+            updateTotals();
+        }
+
+        function updateTotals() {
+            const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+            const method = shippingMethods.find(m => m.id === state.shippingMethodId);
+            const shippingCost = method ? method.price : 0;
+            const tax = subtotal * 0.08;
+            const total = subtotal + shippingCost + tax;
+
+            document.getElementById('summary-subtotal').innerText = 'TK ' + subtotal.toFixed(2);
+            document.getElementById('summary-shipping').innerText = 'TK ' + shippingCost.toFixed(2);
+            document.getElementById('summary-tax').innerText = 'TK ' + tax.toFixed(2);
+            document.getElementById('summary-total').innerText = 'TK ' + total.toFixed(2);
+            document.getElementById('btn-total').innerText = 'TK ' + total.toFixed(2);
+        }
+
+        function setShippingMethod(id) {
+            state.shippingMethodId = id;
+            renderShippingMethods();
+        }
+
+        // --- VALIDATION & HANDLERS ---
+        function validate() {
+            let isValid = true;
+            const errors = {};
+            const data = state.formData;
+
+            if (!data.email.includes('@')) errors.email = 'Valid email required';
+            if (!data.firstName) errors.firstName = 'Required';
+            if (!data.lastName) errors.lastName = 'Required';
+            if (!data.address) errors.address = 'Required';
+            if (!data.city) errors.city = 'Required';
+            if (!data.area) errors.area = 'Required'; // Added validation for Area
+            if (!data.zip) errors.zip = 'Required';
+            
+            const cleanCard = data.cardNumber.replace(/\s/g, '');
+            if (cleanCard.length < 16) errors.cardNumber = 'Valid card number required';
+            if (!data.cardExpiry || data.cardExpiry.length < 5) errors.cardExpiry = 'Required';
+            if (!data.cardCvc || data.cardCvc.length < 3) errors.cardCvc = 'Required';
+
+            // Clear old errors
+            document.querySelectorAll('.error-msg').forEach(el => el.innerText = '');
+            // Clear red borders from both inputs and selects
+            document.querySelectorAll('input, select').forEach(el => el.style.borderColor = '#e5e7eb');
+
+            // Show new errors
+            for (const [key, msg] of Object.entries(errors)) {
+                const errDiv = document.getElementById(`error-${key}`);
+                const inputEl = document.getElementById(key);
+                if (errDiv) errDiv.innerText = msg;
+                if (inputEl) inputEl.style.borderColor = '#ef4444';
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        function handleInput(e) {
+            const { id, value } = e.target;
+            
+            if (id === 'cardNumber') {
+                let v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+                let parts = [];
+                for (let i = 0; i < v.length; i += 4) {
+                    parts.push(v.substr(i, 4));
+                }
+                const formatted = parts.length > 1 ? parts.join(' ') : v;
+                e.target.value = formatted;
+                state.formData[id] = formatted;
+            } else {
+                state.formData[id] = value;
+            }
+        }
+
+        document.getElementById('pay-btn').addEventListener('click', function() {
+            if (!validate()) return;
+
+            const btn = this;
+            btn.disabled = true;
+            btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Processing...`;
+
+            setTimeout(() => {
+                document.getElementById('checkout-view').classList.add('hidden');
+                document.getElementById('success-view').classList.remove('hidden');
+                document.getElementById('success-email').innerText = state.formData.email;
+                window.scrollTo(0, 0);
+                
+                // Optional: Clear cart after success
+                localStorage.removeItem('shoeKartCart');
+                updateHomeCartCount();
+                
+            }, 2000);
+        });
+
+        // Updated listener to include 'select' elements as well
+        document.querySelectorAll('input, select').forEach(input => {
+            input.addEventListener('input', handleInput);
+        });
+
+        // Initialize
+        document.addEventListener("DOMContentLoaded", () => {
+            renderCart();
+            renderShippingMethods();
+            updateHomeCartCount();
+        });
+
+    </script>
+</body>
+</html>
