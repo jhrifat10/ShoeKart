@@ -23,4 +23,19 @@ Welcome to our **ShoeKart E-commerce shop.** Shoekart is an E-commerce platform 
 -	**CSS:** For styling, including Flexbox for a responsive layout and smooth animations.
 -	**JavaScript:** For all interactive functionalities, including shopping cart logic and dynamic content updates
 ---
+<<<<<<< HEAD
 🌐 **Live Demo:** [Check out the website here](https://jhrifat10.github.io/ShoeKart/)
+=======
+## ⚙️ Tools
+- **Git**
+- **Github**
+- **Vscode**
+---
+## 🏆 Contributions
+- Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
+---
+## ☎️ Contact
+- 🖂 **Email:** sayedsanny045@gmail.com
+- 🖂 **Email:** jhrifat10@gmail.com
+
+>>>>>>> 9ba93921329a3a403d6682cc78e49a1eb84d5528
