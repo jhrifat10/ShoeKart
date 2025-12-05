@@ -36,4 +36,3 @@ Welcome to our **ShoeKart E-commerce shop.** Shoekart is an E-commerce platform 
 - 🖂 **Email:** sayedsanny045@gmail.com
 - 🖂 **Email:** jhrifat10@gmail.com
 
->>>>>>> 9ba93921329a3a403d6682cc78e49a1eb84d5528
